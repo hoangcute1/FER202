@@ -1,12 +1,13 @@
 .app-shell {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f7f9fb 0%, #eef1f5 100%);
+  background: #fff;
 }
 
 .page {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .page-title {
@@ -15,26 +16,48 @@
 }
 
 .navbar .nav-link {
-  font-weight: 600;
-  color: #3a3f51;
+  font-weight: 400;
+  color: #555;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #000;
+  transform: translateY(-1px);
 }
 
 .navbar .nav-link.active {
-  color: #0d6efd;
+  color: #000;
+  font-weight: 600;
 }
 
+/* ── Hero Carousel ── */
 .hero-carousel .carousel-item {
-  max-height: 420px;
+  max-height: none;
 }
 
 .hero-image {
-  object-fit: cover;
-  height: 420px;
-  border-radius: 18px;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  border-radius: 0;
+  transition: transform 0.6s ease;
 }
 
+.hero-carousel .carousel-item.active .hero-image {
+  animation: zoomIn 0.8s ease-out;
+}
+
+/* ── Feature cards ── */
 .feature-card {
   border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
 .feature-thumb {
@@ -42,9 +65,42 @@
   object-fit: cover;
 }
 
+/* ── Feature circular thumbnails ── */
+.feature-thumb-circle {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.feature-thumb-circle:hover {
+  transform: scale(1.15) rotate(5deg);
+  border-color: #0d6efd;
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+}
+
+/* ── News cards ── */
+.news-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.news-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.14);
+}
+
 .news-card img {
   height: 180px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-card:hover img {
+  transform: scale(1.08);
 }
 
 .news-card .card-body {
@@ -58,4 +114,84 @@
 
 .stretched-link:hover {
   color: #0a58ca;
+}
+
+.news-link {
+  color: #0d6efd;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.news-link:hover {
+  color: #0a58ca;
+  text-decoration: underline;
+}
+
+/* ── Staggered fade-in for grid items ── */
+.fade-in-item {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* ── News detail ── */
+.news-detail-img {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 16px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.news-detail-title {
+  font-weight: 800;
+  font-size: 1.8rem;
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+.news-detail-desc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  animation: fadeInUp 0.5s ease-out 0.2s both;
+}
+
+/* ── Quiz card animation ── */
+.quiz-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Keyframes ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

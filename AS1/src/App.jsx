@@ -5,22 +5,20 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
 import News from './pages/News'
+import NewsDetail from './pages/NewsDetail'
 import Quiz from './pages/Quiz'
 
 function App() {
   return (
     <div className="app-shell">
-      <Navbar expand="lg" bg="light" className="shadow-sm mb-4">
-        <Container>
-          <Navbar.Brand as={NavLink} to="/">
-            React Router Lab
+      <Navbar expand="lg" bg="light" className="mb-0 border-bottom">
+        <Container fluid className="px-3">
+          <Navbar.Brand as={NavLink} to="/" className="fw-bold">
+            Home
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="main-nav" />
           <Navbar.Collapse id="main-nav">
-            <Nav className="ms-auto" navbarScroll>
-              <Nav.Link as={NavLink} to="/" end>
-                Home
-              </Nav.Link>
+            <Nav navbarScroll>
               <Nav.Link as={NavLink} to="/about">
                 About
               </Nav.Link>
@@ -38,11 +36,12 @@ function App() {
         </Container>
       </Navbar>
 
-      <Container className="pb-5">
+      <Container fluid className="px-3 pb-5">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/news" element={<News />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

@@ -11,7 +11,7 @@ const CustomNavbar = () => {
             <Container>
                 <Navbar.Brand as={Link} to="/" className="d-flex align-items-center fw-bold text-primary fs-4">
                     <FaLaptopCode className="me-2" />
-                    TechShop
+                    Mệt Mệt shop
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
