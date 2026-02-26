@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "lessonTitle": "Japanese Sentence Patterns for JLPT N5",
+    "lessonImage": "https://m.media-amazon.com/images/I/81gfrrHoS3L._SY466_.jpg",
+    "level": "N5",
+    "isCompleted": false,
+    "estimatedTime": 4500
+  },
+  {
+    "id": "2",
+    "lessonTitle": "Japanese Kanji Made Easy",
+    "lessonImage": "https://m.media-amazon.com/images/I/71LR2H4NUbL._SY385_.jpg",
+    "level": "N5",
+    "isCompleted": false,
+    "estimatedTime": 4000
+  },
+  {
+    "id": "3",
+    "lessonTitle": "MASTER LISTENING JAPANESE LANGUAGE PROFICIENCY TEST N4",
+    "lessonImage": "https://m.media-amazon.com/images/I/71WT2ufrDDL._SY425_.jpg",
+    "level": "N4",
+    "isCompleted": true,
+    "estimatedTime": 6000
+  },
+  {
+    "id": "4",
+    "lessonTitle": "1500 JAPANESE VOCABULARY WORDS FOR THE JLPT LEVEL 4",
+    "lessonImage": "https://m.media-amazon.com/images/I/71TQ+dI3qjL._SY466_.jpg",
+    "level": "N4",
+    "isCompleted": true,
+    "estimatedTime": 5500
+  },
+  {
+    "id": "5",
+    "lessonTitle": "SHIN NIHONGO 500 MON - JLPT N3",
+    "lessonImage": "https://m.media-amazon.com/images/I/71YP7MMykNL._SY466_.jpg",
+    "level": "N3",
+    "isCompleted": true,
+    "estimatedTime": 7000
+  },
+  {
+    "id": "6",
+    "lessonTitle": "Try! Japanese Language Proficiency Test N3",
+    "lessonImage": "https://m.media-amazon.com/images/I/710wWXgaHcL._SY425_.jpg",
+    "level": "N3",
+    "isCompleted": false,
+    "estimatedTime": 5000
+  },
+  {
+    "id": "7",
+    "lessonTitle": "2500 Essential Vocabulary for the Jlpt N2",
+    "lessonImage": "https://m.media-amazon.com/images/I/710hokXlHCL._SY466_.jpg",
+    "level": "N2",
+    "isCompleted": false,
+    "estimatedTime": 6500
+  },
+  {
+    "id": "8",
+    "lessonTitle": "Quick Mastery of Jlpt N2 Grammar: The Workbook for the Japanese Language Proficiency Test",
+    "lessonImage": "https://m.media-amazon.com/images/I/81QKH-w3JfL._SY425_.jpg",
+    "level": "N2",
+    "isCompleted": false,
+    "estimatedTime": 7500
+  },
+  {
+    "id": "9",
+    "lessonTitle": "KANZEN MASTER GRAMMAR JAPANESE LANGUAGE PROFICIENCY TEST JLPT N1",
+    "lessonImage": "https://m.media-amazon.com/images/I/91yErlDaDjL._SY425_.jpg",
+    "level": "N1",
+    "isCompleted": true,
+    "estimatedTime": 9000
+  },
+  {
+    "id": "10",
+    "lessonTitle": "Jlpt N1 Japanese Lauguage Proficiency Test Trial Examination",
+    "lessonImage": "https://m.media-amazon.com/images/I/71Crqtp65IL._SY425_.jpg",
+    "level": "N1",
+    "isCompleted": false,
+    "estimatedTime": 8500
+  }
+]
