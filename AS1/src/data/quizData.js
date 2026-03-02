@@ -1,26 +1,34 @@
-export const quizQuestions = [
+export const quizData = [
   {
     id: 1,
-    question: 'Which hook is used to manage state in a functional React component?',
-    options: ['useContext', 'useState', 'useMemo', 'useRef'],
-    answer: 'useState',
+    question: 'What is ReactJS?',
+    answers: ['A JavaScript library for building user interfaces', 'A programming language', 'A database management system'],
+    correctAnswer: 'A JavaScript library for building user interfaces'
   },
   {
     id: 2,
-    question: 'What component from react-router-dom renders the first matching child route?',
-    options: ['Switch', 'Routes', 'Outlet', 'Navigate'],
-    answer: 'Routes',
+    question: 'What is JSX?',
+    answers: ['A programming language', 'A file format', 'A syntax extension for JavaScript'],
+    correctAnswer: 'A syntax extension for JavaScript'
   },
   {
     id: 3,
-    question: 'Which Bootstrap component would you choose for a responsive image slider?',
-    options: ['Accordion', 'Carousel', 'Breadcrumb', 'Toast'],
-    answer: 'Carousel',
+    question: 'Which hook is used to manage state in React?',
+    answers: ['useContext', 'useState', 'useMemo', 'useRef', 'useEffect'],
+    correctAnswer: 'useState'
   },
   {
     id: 4,
-    question: 'Where should you place BrowserRouter in a typical React app?',
-    options: ['Around the entire app', 'Inside every page', 'Only around forms', 'Only in index.html'],
-    answer: 'Around the entire app',
+    question: 'What does JSX stand for?',
+    answers: ['JavaScript XML', 'Java Syntax Extension', 'JavaScript Extension', 'Just Simple XML', 'JavaScript eXtended'],
+    correctAnswer: 'JavaScript XML'
   },
+  {
+    id: 5,
+    question: 'Which method is used to render React elements?',
+    answers: ['ReactDOM.render()', 'React.render()', 'ReactDOM.display()', 'React.show()', 'ReactDOM.create()'],
+    correctAnswer: 'ReactDOM.render()'
+  }
 ]
+
+export const quizQuestions = quizData

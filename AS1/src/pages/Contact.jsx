@@ -23,52 +23,62 @@ function Contact() {
       </div>
 
       <Form noValidate validated={validated} onSubmit={handleSubmit} className="shadow-sm p-4 bg-white rounded-4">
-        <Row className="mb-3" xs={1} md={3}>
-          <Form.Group as={Col} md="4" className="mb-3 mb-md-0" controlId="validationFirstName">
-            <Form.Label>First name</Form.Label>
-            <Form.Control required type="text" placeholder="Mark" />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" className="mb-3 mb-md-0" controlId="validationLastName">
-            <Form.Label>Last name</Form.Label>
-            <Form.Control required type="text" placeholder="Otto" />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="validationUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control required type="text" placeholder="@username" />
-            <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
-          </Form.Group>
+        <Row className="position-relative">
+          {/* Cột trái */}
+          <Col md="4" className="mb-3">
+            <Form.Group className="mb-3" controlId="validationFirstName">
+              <Form.Label>First name</Form.Label>
+              <Form.Control required type="text" placeholder="Mark" />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="validationCity">
+              <Form.Label>City</Form.Label>
+              <Form.Control required type="text" placeholder="City" />
+              <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+
+          {/* Cột giữa - thấp hơn 80px */}
+          <Col md="4" className="mb-3" style={{ marginTop: '0px' }}>
+            <Form.Group className="mb-3" controlId="validationLastName">
+              <Form.Label>Last name</Form.Label>
+              <Form.Control required type="text" placeholder="Otto" />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="validationState">
+              <Form.Label>State</Form.Label>
+              <Form.Control required type="text" placeholder="State" />
+              <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+
+          {/* Cột phải */}
+          <Col md="4" className="mb-3">
+            <Form.Group className="mb-3" controlId="validationUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control required type="text" placeholder="@username" />
+              <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="validationZip">
+              <Form.Label>Zip</Form.Label>
+              <Form.Control required type="text" placeholder="Zip" />
+              <Form.Control.Feedback type="invalid">Please provide a valid zip.</Form.Control.Feedback>
+            </Form.Group>
+          </Col>
         </Row>
 
-        <Row className="mb-3" xs={1} md={3}>
-          <Form.Group as={Col} md="4" className="mb-3 mb-md-0" controlId="validationCity">
-            <Form.Label>City</Form.Label>
-            <Form.Control required type="text" placeholder="City" />
-            <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
+        <div style={{ marginTop: '100px' }}>
+          <Form.Group className="mb-3" controlId="validationTerms">
+            <Form.Check
+              required
+              label="Agree to terms and conditions"
+              feedback="You must agree before submitting."
+              feedbackType="invalid"
+            />
           </Form.Group>
-          <Form.Group as={Col} md="4" className="mb-3 mb-md-0" controlId="validationState">
-            <Form.Label>State</Form.Label>
-            <Form.Control required type="text" placeholder="State" />
-            <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="validationZip">
-            <Form.Label>Zip</Form.Label>
-            <Form.Control required type="text" placeholder="Zip" />
-            <Form.Control.Feedback type="invalid">Please provide a valid zip.</Form.Control.Feedback>
-          </Form.Group>
-        </Row>
 
-        <Form.Group className="mb-3" controlId="validationTerms">
-          <Form.Check
-            required
-            label="Agree to terms and conditions"
-            feedback="You must agree before submitting."
-            feedbackType="invalid"
-          />
-        </Form.Group>
-
-        <Button type="submit">Submit form</Button>
+          <Button type="submit">Submit form</Button>
+        </div>
       </Form>
     </div>
   )
