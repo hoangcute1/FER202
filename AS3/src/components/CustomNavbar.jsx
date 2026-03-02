@@ -19,13 +19,15 @@ const CustomNavbar = () => {
                         <Nav.Link as={Link} to="/" active={location.pathname === '/'} className="fw-medium mx-2">
                             Home
                         </Nav.Link>
-                        <Nav.Link as={Link} to="#" className="fw-medium mx-2">
+                        <Nav.Link as={Link} to="/manage" active={location.pathname === '/manage'} className="fw-medium mx-2">
+                            Manage Products
+                        </Nav.Link>
+                        <Nav.Link as={Link} to="/about" active={location.pathname === '/about'} className="fw-medium mx-2">
                             About
                         </Nav.Link>
-                        <Nav.Link as={Link} to="#" className="fw-medium mx-2">
+                        <Nav.Link as={Link} to="/contact" active={location.pathname === '/contact'} className="fw-medium mx-2">
                             Contact
                         </Nav.Link>
-                        {/* Optional: Add a call to action or profile here */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

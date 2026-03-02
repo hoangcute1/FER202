@@ -5,6 +5,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ProductEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -24,7 +26,7 @@ const ProductEdit = () => {
 
     const fetchProduct = async () => {
         try {
-            const response = await axios.get(`http://localhost:9999/products/${id}`);
+            const response = await axios.get(`${API_URL}/${id}`);
             setProduct(response.data);
             setLoading(false);
         } catch (err) {
@@ -44,7 +46,7 @@ const ProductEdit = () => {
     const handleUpdateProduct = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:9999/products/${id}`, product);
+            await axios.put(`${API_URL}/${id}`, product);
             alert('Product updated successfully!');
             navigate(`/products/${id}`);
         } catch (err) {
