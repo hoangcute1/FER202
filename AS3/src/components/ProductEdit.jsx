@@ -138,12 +138,13 @@ const ProductEdit = () => {
                                     </Row>
 
                                     <Form.Group className="mb-5">
-                                        <Form.Label className="text-muted small fw-bold text-uppercase">Image Filename</Form.Label>
+                                        <Form.Label className="text-muted small fw-bold text-uppercase">Image URL</Form.Label>
                                         <Form.Control
                                             type="text"
                                             name="image"
                                             value={product.image}
                                             onChange={handleInputChange}
+                                            placeholder="https://example.com/image.jpg"
                                             className="bg-light border-0"
                                         />
                                     </Form.Group>

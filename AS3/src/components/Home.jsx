@@ -89,7 +89,7 @@ const Home = () => {
                             >
                                 <Card.Img
                                     variant="top"
-                                    src={`/images/${product.image}`}
+                                    src={product.image && product.image.startsWith('http') ? product.image : `/images/${product.image}`}
                                     alt={product.name}
                                     style={{ maxHeight: '180px', objectFit: 'contain', padding: '10px' }}
                                     onError={(e) => {
@@ -151,7 +151,7 @@ const Home = () => {
                             <Row>
                                 <Col md={4}>
                                     <img 
-                                        src={`/images/${selectedProduct.image}`}
+                                        src={selectedProduct.image && selectedProduct.image.startsWith('http') ? selectedProduct.image : `/images/${selectedProduct.image}`}
                                         alt={selectedProduct.name}
                                         className="img-fluid rounded"
                                         onError={(e) => { e.target.src = 'https://via.placeholder.com/200?text=No+Image' }}

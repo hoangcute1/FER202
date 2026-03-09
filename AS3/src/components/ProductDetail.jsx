@@ -81,7 +81,7 @@ const ProductDetail = () => {
                         <Col md={6} className="bg-light d-flex align-items-center justify-content-center p-5">
                             <motion.img
                                 layoutId={`image-${product.id}`}
-                                src={`/images/${product.image}`}
+                                src={product.image && product.image.startsWith('http') ? product.image : `/images/${product.image}`}
                                 alt={product.name}
                                 className="img-fluid"
                                 style={{ maxHeight: '400px', objectFit: 'contain' }}
@@ -129,7 +129,7 @@ const ProductDetail = () => {
                     <Row>
                         <Col md={4}>
                             <img 
-                                src={`/images/${product?.image}`}
+                                src={product?.image && product.image.startsWith('http') ? product.image : `/images/${product?.image}`}
                                 alt={product?.name}
                                 className="img-fluid rounded"
                                 onError={(e) => { e.target.src = 'https://via.placeholder.com/200?text=No+Image' }}

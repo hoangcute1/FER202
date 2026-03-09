@@ -24,6 +24,7 @@ const ProductList = () => {
         description: '',
         price: '',
         currentPrice: '',
+        image: '',
     });
 
     useEffect(() => {
@@ -54,7 +55,7 @@ const ProductList = () => {
         try {
             const response = await axios.post(API_URL, newProduct);
             setProducts([...products, response.data]);
-            setNewProduct({ name: '', description: '', price: '', currentPrice: '' });
+            setNewProduct({ name: '', description: '', price: '', currentPrice: '', image: '' });
             alert('Product added successfully!');
         } catch (err) {
             alert('Error adding product');
@@ -147,6 +148,19 @@ const ProductList = () => {
                             />
                         </Form.Group>
 
+                        <Form.Group className="mb-3 d-flex align-items-center">
+                            <Form.Label className="mb-0 me-3 fw-bold" style={{ minWidth: '120px' }}>
+                                Image URL:
+                            </Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="image"
+                                value={newProduct.image}
+                                onChange={handleInputChange}
+                                placeholder="https://example.com/image.jpg"
+                            />
+                        </Form.Group>
+
                         <div className="text-center">
                             <Button variant="dark" type="submit">
                                 Add Product
@@ -164,6 +178,7 @@ const ProductList = () => {
                 <thead className="table-dark">
                     <tr>
                         <th>#</th>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
@@ -175,6 +190,14 @@ const ProductList = () => {
                     {products.map((product, index) => (
                         <tr key={product.id}>
                             <td>{index + 1}</td>
+                            <td>
+                                <img
+                                    src={product.image && product.image.startsWith('http') ? product.image : `/images/${product.image}`}
+                                    alt={product.name}
+                                    style={{ width: '60px', height: '60px', objectFit: 'contain' }}
+                                    onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/60?text=No+Image'; }}
+                                />
+                            </td>
                             <td className="text-start">{product.name}</td>
                             <td className="text-start">{product.description}</td>
                             <td>
