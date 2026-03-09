@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts, addProduct, deleteProduct } from '../redux/productSlice';
 import { Container, Table, Button, Form, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 // Format number to Vietnamese price format (e.g., 25.990.000)
 const formatPrice = (price) => {
@@ -14,9 +13,8 @@ const formatPrice = (price) => {
 };
 
 const ProductList = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+    const { items: products, loading, error } = useSelector((state) => state.products);
 
     // Form state
     const [newProduct, setNewProduct] = useState({
@@ -28,19 +26,8 @@ const ProductList = () => {
     });
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
-        try {
-            const response = await axios.get(API_URL);
-            setProducts(response.data);
-            setLoading(false);
-        } catch (err) {
-            setError('Error fetching products. Please try again later.');
-            setLoading(false);
-        }
-    };
+        dispatch(fetchProducts());
+    }, [dispatch]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -53,8 +40,7 @@ const ProductList = () => {
     const handleAddProduct = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(API_URL, newProduct);
-            setProducts([...products, response.data]);
+            await dispatch(addProduct(newProduct)).unwrap();
             setNewProduct({ name: '', description: '', price: '', currentPrice: '', image: '' });
             alert('Product added successfully!');
         } catch (err) {
@@ -65,8 +51,7 @@ const ProductList = () => {
     const handleDeleteProduct = async (id) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
             try {
-                await axios.delete(`${API_URL}/${id}`);
-                setProducts(products.filter((p) => p.id !== id));
+                await dispatch(deleteProduct(id)).unwrap();
             } catch (err) {
                 alert('Error deleting product');
             }
@@ -209,12 +194,11 @@ const ProductList = () => {
                                 {formatPrice(product.currentPrice)} đ
                             </td>
                             <td>
-                                <div className="d-flex flex-column gap-1">
-                                    <Link to={`/products/edit/${product.id}`} className="w-100">
+                                <div className="d-flex flex-row gap-1 justify-content-center">
+                                    <Link to={`/products/edit/${product.id}`}>
                                         <Button
                                             variant="warning"
                                             size="sm"
-                                            className="w-100"
                                         >
                                             Edit
                                         </Button>
@@ -222,7 +206,6 @@ const ProductList = () => {
                                     <Button
                                         variant="danger"
                                         size="sm"
-                                        className="w-100"
                                         onClick={() => handleDeleteProduct(product.id)}
                                     >
                                         Delete

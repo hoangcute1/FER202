@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProductById, updateProduct, clearSelectedProduct } from '../redux/productSlice';
 import { Container, Form, Button, Spinner, Alert, Card, Row, Col } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaSave } from 'react-icons/fa';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 const ProductEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { selectedProduct, loading, error } = useSelector((state) => state.products);
     const [product, setProduct] = useState({
         name: '',
         price: '',
@@ -17,23 +18,19 @@ const ProductEdit = () => {
         description: '',
         image: ''
     });
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchProduct();
-    }, [id]);
+        dispatch(fetchProductById(id));
+        return () => {
+            dispatch(clearSelectedProduct());
+        };
+    }, [dispatch, id]);
 
-    const fetchProduct = async () => {
-        try {
-            const response = await axios.get(`${API_URL}/${id}`);
-            setProduct(response.data);
-            setLoading(false);
-        } catch (err) {
-            setError('Error fetching product details');
-            setLoading(false);
+    useEffect(() => {
+        if (selectedProduct) {
+            setProduct(selectedProduct);
         }
-    };
+    }, [selectedProduct]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -46,7 +43,7 @@ const ProductEdit = () => {
     const handleUpdateProduct = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${API_URL}/${id}`, product);
+            await dispatch(updateProduct({ id, product })).unwrap();
             alert('Product updated successfully!');
             navigate(`/products/${id}`);
         } catch (err) {

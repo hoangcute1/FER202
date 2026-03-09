@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '../redux/productSlice';
 import { Container, Row, Col, Card, Button, Spinner, Alert, Modal, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
-
-const API_URL = import.meta.env.VITE_API_URL;
 
 // Format number to Vietnamese price format (e.g., 25.990.000)
 const formatPrice = (price) => {
@@ -15,9 +14,8 @@ const formatPrice = (price) => {
 };
 
 const Home = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+    const { items: products, loading, error } = useSelector((state) => state.products);
     const [showBuyModal, setShowBuyModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [buyForm, setBuyForm] = useState({
@@ -28,19 +26,8 @@ const Home = () => {
     });
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
-        try {
-            const response = await axios.get(API_URL);
-            setProducts(response.data);
-            setLoading(false);
-        } catch (err) {
-            setError('Error fetching products. Please try again later.');
-            setLoading(false);
-        }
-    };
+        dispatch(fetchProducts());
+    }, [dispatch]);
 
     const handleBuyNow = (product) => {
         setSelectedProduct(product);

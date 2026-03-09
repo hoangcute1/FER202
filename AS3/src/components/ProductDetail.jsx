@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProductById, clearSelectedProduct } from '../redux/productSlice';
 import { Container, Card, Button, Spinner, Alert, Row, Col, Badge, Modal, Form } from 'react-bootstrap';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaEdit, FaShoppingCart } from 'react-icons/fa';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 const ProductDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+    const { selectedProduct: product, loading, error } = useSelector((state) => state.products);
     const [showBuyModal, setShowBuyModal] = useState(false);
     const [buyForm, setBuyForm] = useState({
         name: '',
@@ -22,19 +20,11 @@ const ProductDetail = () => {
     });
 
     useEffect(() => {
-        fetchProduct();
-    }, [id]);
-
-    const fetchProduct = async () => {
-        try {
-            const response = await axios.get(`${API_URL}/${id}`);
-            setProduct(response.data);
-            setLoading(false);
-        } catch (err) {
-            setError('Error fetching product details');
-            setLoading(false);
-        }
-    };
+        dispatch(fetchProductById(id));
+        return () => {
+            dispatch(clearSelectedProduct());
+        };
+    }, [dispatch, id]);
 
     const handleBuyNow = () => {
         setShowBuyModal(true);
